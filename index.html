@@ -1,29 +1,31 @@
-<!-- <?php
+<?php
 
-$conn = mysqli_connect('localhost','root','','contact_db') or die('connection failed');
+$conn = mysqli_connect('localhost', 'root', '', 'contact_db') or die('Connection failed');
 
-if(isset($_POST['send'])){
+$message = array();
+
+if (isset($_POST['send'])) {
 
    $name = mysqli_real_escape_string($conn, $_POST['name']);
    $email = mysqli_real_escape_string($conn, $_POST['email']);
    $number = mysqli_real_escape_string($conn, $_POST['number']);
    $msg = mysqli_real_escape_string($conn, $_POST['message']);
 
-   $select_message = mysqli_query($conn, "SELECT * FROM `contact_form` WHERE name = '$name' AND email = '$email' AND number = '$number' AND message = '$msg'") or die('query failed');
-   
-   if(mysqli_num_rows($select_message) > 0){
-      $message[] = 'message sent already!';
-   }else{
-      mysqli_query($conn, "INSERT INTO `contact_form`(name, email, number, message) VALUES('$name', '$email', '$number', '$msg')") or die('query failed');
-      $message[] = 'message sent successfully!';
-   }
+   $select_message = mysqli_query($conn, "SELECT * FROM `contact_form` WHERE name = '$name' AND email = '$email' AND number = '$number' AND message = '$msg'") or die('Query failed');
 
+   if (mysqli_num_rows($select_message) > 0) {
+      $message[] = 'Message already sent!';
+   } else {
+      mysqli_query($conn, "INSERT INTO `contact_form` (name, email, number, message) VALUES ('$name', '$email', '$number', '$msg')") or die('Query failed');
+      $message[] = 'Message sent successfully!';
+   }
 }
 
-?> -->
+?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -41,15 +43,16 @@ if(isset($_POST['send'])){
    <link rel="stylesheet" href="css/style.css">
 
 </head>
+
 <body>
 
 <?php
 
-if(isset($message)){
-   foreach($message as $message){
+if (isset($message)) {
+   foreach ($message as $msg) {
       echo '
       <div class="message" data-aos="zoom-out">
-         <!-- <span>'.$message.'</span> -->
+         <span>'.$msg.'</span>
          <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
       </div>
       ';
@@ -95,9 +98,9 @@ if(isset($message)){
    </div>
 
    <div class="content">
-      <h3 data-aos="fade-up">Hi,I am Litesh Kumar</h3>
+      <h3 data-aos="fade-up">Hi, I am Litesh Kumar</h3>
       <span data-aos="fade-up">web designer & developer</span>
-      <p data-aos="fade-up">Hello friends,I am Litesh Kumar a progressing web developer</p>
+      <p data-aos="fade-up">Hello friends, I am Litesh Kumar, a progressing web developer.</p>
       <a data-aos="fade-up" href="#about" class="btn">about me</a>
    </div>
 
@@ -113,7 +116,7 @@ if(isset($message)){
 
    <div class="biography">
 
-      <p data-aos="fade-up">I am Litesh Kumar from Himachal Pradesh.I am currently persuing my BTech degree in mathematics and computing at IIT Guwahati</p>
+      <p data-aos="fade-up">I am Litesh Kumar from Himachal Pradesh. I am currently pursuing my BTech degree in Mathematics and Computing at IIT Guwahati.</p>
 
       <div class="bio">
          <h3 data-aos="zoom-in"> <span>name : </span> Litesh Kumar </h3>
@@ -121,7 +124,6 @@ if(isset($message)){
          <h3 data-aos="zoom-in"> <span>address : </span> IIT Guwahati </h3>
          <h3 data-aos="zoom-in"> <span>phone : </span> 7807072144 </h3>
          <h3 data-aos="zoom-in"> <span>age : </span>18 years </h3>
-         <!-- <h3 data-aos="zoom-in"> <span>experience : </span>2 years </h3> -->
       </div>
 
       <a href="#" class="btn" data-aos="fade-up">download CV</a>
@@ -153,62 +155,38 @@ if(isset($message)){
             <h3 class="title" data-aos="fade-right">education</h3>
             <div class="box" data-aos="fade-right">
                <span>( 2008-2013 )</span>
-               <h3>Govt.Primary school Dhargaloo</h3>
-               <p>In this time span i did my primary schooling upto 5th class.</p>
+               <h3>Govt. Primary school Dhargaloo</h3>
+               <p>In this time span, I did my primary schooling up to 5th class.</p>
             </div>
             <div class="box" data-aos="fade-right">
                <span>( 2012-2016 )</span>
                <h3>Govt Middle school Dhargaloo</h3>
-               <p>In this time span i did my schooling upto 8th class 5th class onwards.</p>
+               <p>In this time span, I did my schooling up to 8th class starting from 5th class.</p>
             </div>
 
             <div class="box" data-aos="fade-right">
                <span>( 2016-2020 )</span>
                <h3>JNV</h3>
-               <p>In year 2016 I got admission in Jawahar Navodaya vidyalaya Mandi Himachal Pradseh.I passed out in 2020.In 10th boards I got 92.2% and in 12th I got 95.4% marks.</p>
+               <p>In the year 2016, I got admission to Jawahar Navodaya Vidyalaya Mandi, Himachal Pradesh. I passed out in 2020. In 10th boards, I scored 92.2% and in 12th, I scored 95.4% marks.</p>
             </div>
 
             <div class="box" data-aos="fade-right">
                <span>( 2020 - 2021 )</span>
                <h3>Dakshana</h3>
-               <p>After doing my schooling I prepared for IIT at Dakshana Velly Pune during covid time.Dakshana helped me to get into in my dream IIT</p>
+               <p>After completing my schooling, I prepared for IIT at Dakshana Valley Pune during the Covid-19 pandemic. Dakshana helped me to get into my dream IIT.</p>
             </div>
 
             <div class="box" data-aos="fade-right">
                <span>( 2021 -  )</span>
                <h3>IIT Guwahati</h3>
-               <p>Currently I am a BTech student at IIT Guwahati in mathematics and computing.</p>
-            </div>
-
-         </div>
-
-         <!-- <div class="box-container">
-
-            <h3 class="title" data-aos="fade-left">experience</h3>
-
-            <div class="box" data-aos="fade-left">
-               <span>( 2019 - 2020 )</span>
-               <h3>front-end developer</h3>
-               <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat assumenda, eaque sequi repellat natus quia.</p>
-            </div>
-
-            <div class="box" data-aos="fade-left">
-               <span>( 2020 - 2021 )</span>
-               <h3>back-end developer</h3>
-               <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat assumenda, eaque sequi repellat natus quia.</p>
-            </div>
-
-            <div class="box" data-aos="fade-left">
-               <span>( 2021 - 2022 )</span>
-               <h3>full-stack developer</h3>
-               <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat assumenda, eaque sequi repellat natus quia.</p>
+               <p>Currently, I am a BTech student at IIT Guwahati, pursuing Mathematics and Computing.</p>
             </div>
 
          </div>
 
       </div>
 
-   </div> -->
+   </div>
 
 </section>
 
@@ -356,18 +334,7 @@ if(isset($message)){
 
 <!-- contact section ends -->
 
-<div class="credit"> &copy; copyright @ <?php echo date('Y'); ?> by <span>Litesh Kumar</span> </div>
-
-
-
-
-
-
-
-
-
-
-
+<div class="credit"> &copy; <?php echo date('Y'); ?> by <span>Litesh Kumar</span> </div>
 
 <!-- custom js file link  -->
 <script src="js/script.js"></script>
@@ -378,11 +345,12 @@ if(isset($message)){
 <script>
 
    AOS.init({
-      duration:800,
-      delay:300
+      duration: 800,
+      delay: 300
    });
 
 </script>
-   
+
 </body>
+
 </html>
